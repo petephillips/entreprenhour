@@ -1,0 +1,17 @@
+{
+  "name": "EntreprenHour",
+  "short_name": "EntreprenHour",
+  "description": "Build your dreams hour by hour",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#030E4F",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
