@@ -235,6 +235,215 @@
             color: #030E4F;
         }
         
+        /* New Figma-Based Timer Modal */
+        .timer-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999999;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .timer-modal-backdrop.active {
+            display: flex;
+        }
+        
+        .timer-modal {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 24px;
+            width: 340px;
+            max-width: 95vw;
+            position: relative;
+            animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        /* Mini Tab - Bottom Right Floating Button */
+        .timer-mini-tab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #030E4F;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(3, 14, 79, 0.3);
+            padding: 12px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            z-index: 999998;
+            transition: all 0.3s ease;
+            animation: slideUp 0.4s ease;
+        }
+        
+        .timer-mini-tab.active {
+            display: flex;
+        }
+        
+        .timer-mini-tab:hover {
+            transform: scale(1.05);
+        }
+        
+        .timer-mini-tab:active {
+            transform: scale(0.95);
+        }
+        
+        /* Circular Dot Timer */
+        .circular-timer {
+            position: relative;
+            width: 208px;
+            height: 208px;
+            margin: 0 auto 16px;
+        }
+        
+        .timer-dot {
+            transition: all 0.3s ease;
+        }
+        
+        .timer-dot.filled {
+            animation: dotFill 0.5s ease;
+        }
+        
+        @keyframes dotFill {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+        
+        .timer-center {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .timer-glow {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(244, 159, 28, 0.1), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        /* Focus Radio (New Design) */
+        .focus-radio {
+            background: #030E4F;
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        
+        .radio-equalizer {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 2px;
+            height: 40px;
+            margin: 8px 0;
+        }
+        
+        .eq-bar {
+            width: 6px;
+            background: #F49F1C;
+            border-radius: 3px 3px 0 0;
+            transition: height 0.15s ease-out;
+        }
+        
+        .channel-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .channel-dot.active {
+            background: #F49F1C;
+        }
+        
+        .timer-preset-btn {
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .timer-preset-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .timer-preset-btn.active {
+            background: #F49F1C !important;
+            color: white !important;
+        }
+        
+        .timer-control-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .timer-control-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .timer-control-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .progress-bar-container {
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 12px;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: #F49F1C;
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+        
+        @media (max-width: 640px) {
+            .timer-modal {
+                width: 100%;
+                max-width: 340px;
+            }
+            
+            .timer-mini-tab {
+                bottom: 16px;
+                right: 16px;
+            }
+        }
+        
         /* Floating Timer Modal */
         .floating-timer {
             position: fixed;
@@ -1060,10 +1269,6 @@
                         <i class="fab fa-google text-xl mr-3 text-red-500"></i>
                         <span class="font-semibold">Continue with Google</span>
                     </button>
-                    <button onclick="socialAuth('apple')" class="w-full flex items-center justify-center px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-gray-500 hover:bg-gray-50 transition">
-                        <i class="fab fa-apple text-xl mr-3"></i>
-                        <span class="font-semibold">Continue with Apple</span>
-                    </button>
                 </div>
                 
                 <div class="relative mb-6">
@@ -1105,90 +1310,104 @@
         </div>
     </div>
 
-    <!-- Floating Timer Modal -->
-    <div id="floatingTimer" class="floating-timer collapsed" style="display: none;">
-        <!-- Tab -->
-        <div class="timer-tab" onclick="toggleFloatingTimer()">
-            <div class="timer-tab-progress">
-                <div id="tabProgressFill" class="timer-tab-fill" style="height: 100%;"></div>
-            </div>
-            <div class="text-xs">
-                <span id="tabMinutes">60</span>m
+    <!-- New Figma-Based Timer Modal -->
+    <!-- Mini Tab (Bottom Right Floating Button) -->
+    <div id="timerMiniTab" class="timer-mini-tab" style="display: none;">
+        <div style="position: relative;">
+            <i class="fas fa-clock" id="miniTabIcon" style="color: #F49F1C; font-size: 16px;"></i>
+        </div>
+        <div>
+            <div style="font-size: 10px; color: rgba(255, 255, 255, 0.7); margin-bottom: 2px;">Focus</div>
+            <div style="font-size: 18px; color: white; font-family: monospace; font-weight: 600;">
+                <span id="miniTabMinutes">25</span>:<span id="miniTabSeconds">00</span>
             </div>
         </div>
-        
-        <!-- Modal Content -->
-        <div class="p-6">
-            <!-- Digital Clock -->
-            <div class="digital-clock mb-6">
-                <span id="floatingMinutes">60</span><span class="timer-pulse">:</span><span id="floatingSeconds">00</span>
-            </div>
-            
-            <!-- Water Glass Animation -->
-            <div class="water-glass">
-                <div class="glass-container">
-                    <div id="waterFill" class="water-fill" style="height: 0%;">
-                        <div class="water-surface-shine"></div>
-                        <div class="bubbles" id="bubbles"></div>
+        <div id="miniTabPulse" style="width: 6px; height: 6px; background: #F49F1C; border-radius: 50%; margin-left: 4px; display: none;"></div>
+    </div>
+
+    <!-- Centered Modal Backdrop -->
+    <div id="timerModalBackdrop" class="timer-modal-backdrop">
+        <div class="timer-modal" onclick="event.stopPropagation()">
+            <!-- Close Button -->
+            <button onclick="closeTimerModal()" style="position: absolute; top: 8px; right: 8px; background: none; border: none; color: #030E4F; cursor: pointer; padding: 8px; border-radius: 50%; transition: background 0.3s;" onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background='none'">
+                <i class="fas fa-times" style="font-size: 16px;"></i>
+            </button>
+
+            <!-- Timer Title -->
+            <h2 style="text-align: center; margin-bottom: 16px; font-size: 18px; color: #030E4F; font-weight: 600;">
+                Focus Timer
+            </h2>
+
+            <!-- Circular Dot Timer -->
+            <div class="circular-timer">
+                <!-- Animated dots -->
+                <svg style="width: 100%; height: 100%; transform: rotate(-90deg);">
+                    <!-- 60 dots will be generated by JavaScript -->
+                    <g id="timerDots"></g>
+                </svg>
+
+                <!-- Center Content -->
+                <div class="timer-center">
+                    <!-- Growing circle glow -->
+                    <div id="timerGlow" class="timer-glow" style="width: 80px; height: 80px;"></div>
+                    
+                    <!-- Time Display -->
+                    <div style="position: relative; z-index: 10; text-align: center;">
+                        <div style="font-size: 40px; font-weight: 600; color: #030E4F; margin-bottom: 4px;">
+                            <span id="modalMinutes">25</span>:<span id="modalSeconds">00</span>
+                        </div>
+                        <div style="font-size: 11px; color: #F49F1C;">
+                            <span id="elapsedTime">0m 0s</span> elapsed
+                        </div>
                     </div>
-                    <div class="glass-base"></div>
-                    <!-- Droplets -->
-                    <div class="droplet"></div>
-                    <div class="droplet"></div>
-                    <div class="droplet"></div>
-                    <!-- Splash effects -->
-                    <div class="splash"></div>
-                    <div class="splash"></div>
-                    <div class="splash"></div>
                 </div>
             </div>
-            
-            <!-- Status Text -->
-            <div class="text-center mb-6">
-                <p class="text-lg font-semibold text-gray-700">Building: <span class="text-[#030E4F]">My Amazing Startup</span></p>
-                <p class="text-sm text-gray-500 mt-1">Stay focused! You've got this 💪</p>
+
+            <!-- Time Presets -->
+            <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px;">
+                <button onclick="adjustTime(-5)" class="timer-control-btn" style="width: 32px; height: 32px; background: #E5E7EB; color: #030E4F;" id="decreaseBtn">
+                    <i class="fas fa-minus" style="font-size: 12px;"></i>
+                </button>
+                
+                <div style="display: flex; gap: 6px;">
+                    <button onclick="setPresetTime(15)" class="timer-preset-btn" id="preset-15" style="background: #E5E7EB; color: #030E4F;">15m</button>
+                    <button onclick="setPresetTime(25)" class="timer-preset-btn active" id="preset-25" style="background: #F49F1C; color: white;">25m</button>
+                    <button onclick="setPresetTime(45)" class="timer-preset-btn" id="preset-45" style="background: #E5E7EB; color: #030E4F;">45m</button>
+                    <button onclick="setPresetTime(60)" class="timer-preset-btn" id="preset-60" style="background: #E5E7EB; color: #030E4F;">60m</button>
+                </div>
+
+                <button onclick="adjustTime(5)" class="timer-control-btn" style="width: 32px; height: 32px; background: #E5E7EB; color: #030E4F;" id="increaseBtn">
+                    <i class="fas fa-plus" style="font-size: 12px;"></i>
+                </button>
             </div>
-            
-            <!-- Focus Radio Player -->
-            <div class="radio-player">
-                <div class="radio-label">
-                    <i class="fas fa-radio"></i>
-                    <span>Focus Radio</span>
-                    <span id="radioStatus" class="radio-status" style="display: none;"></span>
+
+            <!-- Play/Pause Controls -->
+            <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 12px;">
+                <button onclick="togglePlayPause()" class="timer-control-btn" id="playPauseBtn" style="background: #F49F1C; color: white;">
+                    <i class="fas fa-play" id="playPauseIcon" style="font-size: 18px;"></i>
+                </button>
+                <button onclick="resetTimer()" class="timer-control-btn" style="background: #030E4F; color: white;">
+                    <i class="fas fa-redo" style="font-size: 18px;"></i>
+                </button>
+            </div>
+
+            <!-- Focus Radio -->
+            <div class="focus-radio">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                        <i class="fas fa-radio" style="color: #F49F1C; font-size: 12px;"></i>
+                        <span style="color: white; font-size: 12px;">Focus Radio</span>
+                    </div>
+                    <div id="radioFrequency" style="color: #F49F1C; font-size: 12px;">88.1 FM</div>
                 </div>
-                
-                <!-- Station Selector -->
-                <div class="radio-stations">
-                    <button class="station-btn active" onclick="selectStation('ambient')" id="station-ambient">
-                        🌊 Ambient
-                    </button>
-                    <button class="station-btn" onclick="selectStation('lofi')" id="station-lofi">
-                        🎵 Lo-Fi
-                    </button>
-                    <button class="station-btn" onclick="selectStation('nature')" id="station-nature">
-                        🌲 Nature
-                    </button>
-                    <button class="station-btn" onclick="selectStation('piano')" id="station-piano">
-                        🎹 Piano
-                    </button>
-                    <button class="station-btn" onclick="selectStation('electronic')" id="station-electronic">
-                        ⚡ Electronic
-                    </button>
+
+                <!-- Channel Name -->
+                <div style="text-align: center; margin-bottom: 8px;">
+                    <div id="channelName" style="color: white; font-size: 12px;">Deep Focus</div>
                 </div>
-                
-                <div class="radio-controls">
-                    <button onclick="playRadio()" id="playRadioBtn" class="radio-btn play">
-                        <i class="fas fa-play"></i>
-                    </button>
-                    <button onclick="pauseRadio()" id="pauseRadioBtn" class="radio-btn pause" style="display: none;">
-                        <i class="fas fa-pause"></i>
-                    </button>
-                    <button onclick="stopRadio()" id="stopRadioBtn" class="radio-btn stop">
-                        <i class="fas fa-stop"></i>
-                    </button>
-                </div>
-                
-                <div class="equalizer" id="equalizer">
+
+                <!-- Equalizer -->
+                <div class="radio-equalizer" id="radioEqualizer">
                     <div class="eq-bar" style="height: 8px;"></div>
                     <div class="eq-bar" style="height: 12px;"></div>
                     <div class="eq-bar" style="height: 20px;"></div>
@@ -1198,32 +1417,29 @@
                     <div class="eq-bar" style="height: 12px;"></div>
                     <div class="eq-bar" style="height: 8px;"></div>
                 </div>
-            </div>
-            
-            <!-- Timeline -->
-            <div class="mb-4">
-                <div class="timer-timeline">
-                    <div id="timelineProgress" class="timeline-progress" style="width: 0%;"></div>
-                    <div class="timeline-markers">
-                        <div class="timeline-marker"><span>0</span></div>
-                        <div class="timeline-marker"><span>10</span></div>
-                        <div class="timeline-marker"><span>20</span></div>
-                        <div class="timeline-marker"><span>30</span></div>
-                        <div class="timeline-marker"><span>40</span></div>
-                        <div class="timeline-marker"><span>50</span></div>
-                        <div class="timeline-marker"><span>60</span></div>
+
+                <!-- Channel Controls -->
+                <div style="display: flex; align-items: center; justify-center: center; gap: 8px;">
+                    <button onclick="prevChannel()" style="padding: 4px 10px; background: rgba(244, 159, 28, 0.2); color: #F49F1C; border: none; border-radius: 6px; font-size: 11px; cursor: pointer; transition: background 0.3s;" onmouseover="this.style.background='rgba(244, 159, 28, 0.3)'" onmouseout="this.style.background='rgba(244, 159, 28, 0.2)'">
+                        ← Prev
+                    </button>
+                    
+                    <div style="display: flex; gap: 4px;">
+                        <div class="channel-dot active" id="dot-0" onclick="selectChannel(0)"></div>
+                        <div class="channel-dot" id="dot-1" onclick="selectChannel(1)"></div>
+                        <div class="channel-dot" id="dot-2" onclick="selectChannel(2)"></div>
+                        <div class="channel-dot" id="dot-3" onclick="selectChannel(3)"></div>
                     </div>
+
+                    <button onclick="nextChannel()" style="padding: 4px 10px; background: rgba(244, 159, 28, 0.2); color: #F49F1C; border: none; border-radius: 6px; font-size: 11px; cursor: pointer; transition: background 0.3s;" onmouseover="this.style.background='rgba(244, 159, 28, 0.3)'" onmouseout="this.style.background='rgba(244, 159, 28, 0.2)'">
+                        Next →
+                    </button>
                 </div>
             </div>
-            
-            <!-- Action Buttons -->
-            <div class="flex gap-3">
-                <button onclick="pauseFloatingTimer()" id="pauseBtn" class="flex-1 px-4 py-3 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition">
-                    <i class="fas fa-pause mr-2"></i>Pause
-                </button>
-                <button onclick="stopFloatingTimer()" class="flex-1 px-4 py-3 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 transition">
-                    <i class="fas fa-stop mr-2"></i>End Session
-                </button>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
             </div>
         </div>
     </div>
@@ -1751,6 +1967,386 @@
             `;
         }
         
+// ============================================
+// NEW FIGMA TIMER JAVASCRIPT
+// Copy this entire block and replace old timer code
+// ============================================
+
+        // Timer Variables
+        let timerRunning = false;
+        let timerSeconds = 0;
+        let totalSeconds = 25 * 60; // Default 25 minutes
+        let elapsedSeconds = 0;
+        let timerInterval = null;
+        let currentPreset = 25;
+        
+        // Radio Variables
+        let currentChannel = 0;
+        let equalizerInterval = null;
+        let audioContext = null;
+        let oscillator = null;
+        let gainNode = null;
+        let filterNode = null;
+        let lfoOscillator = null;
+        let lfoGain = null;
+        
+        // Radio Channels (Figma Design)
+        const radioChannels = [
+            { name: 'Deep Focus', frequency: '88.1 FM', baseFreq: 174.61, harmonyFreq: 261.63, oscType: 'sine', filterFreq: 800, lfoRate: 0.2, volume: 0.15 },
+            { name: 'Ambient Chill', frequency: '92.5 FM', baseFreq: 220.00, harmonyFreq: 329.63, oscType: 'triangle', filterFreq: 1200, lfoRate: 0.5, volume: 0.18 },
+            { name: 'Nature Sounds', frequency: '96.3 FM', baseFreq: 146.83, harmonyFreq: 196.00, oscType: 'sine', filterFreq: 2000, lfoRate: 0.15, volume: 0.12 },
+            { name: 'Lo-fi Beats', frequency: '101.7 FM', baseFreq: 293.66, harmonyFreq: 440.00, oscType: 'sawtooth', filterFreq: 1500, lfoRate: 0.4, volume: 0.14 }
+        ];
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            generateTimerDots();
+            updateRadioDisplay();
+        });
+        
+        // ============================================
+        // TIMER MODAL FUNCTIONS
+        // ============================================
+        
+        function openTimerModal() {
+            const backdrop = document.getElementById('timerModalBackdrop');
+            backdrop.classList.add('active');
+            
+            // Hide mini tab when modal is open
+            document.getElementById('timerMiniTab').style.display = 'none';
+            
+            // Reset to defaults if not running
+            if (!timerRunning) {
+                setPresetTime(currentPreset);
+            }
+        }
+        
+        function closeTimerModal() {
+            const backdrop = document.getElementById('timerModalBackdrop');
+            backdrop.classList.remove('active');
+            
+            // Show mini tab when modal is closed (if timer was ever started)
+            if (timerRunning || elapsedSeconds > 0) {
+                document.getElementById('timerMiniTab').style.display = 'flex';
+            }
+        }
+        
+        // Click mini tab to reopen modal
+        document.addEventListener('DOMContentLoaded', function() {
+            const miniTab = document.getElementById('timerMiniTab');
+            if (miniTab) {
+                miniTab.addEventListener('click', openTimerModal);
+            }
+            
+            // Click backdrop to close
+            const backdrop = document.getElementById('timerModalBackdrop');
+            if (backdrop) {
+                backdrop.addEventListener('click', function(e) {
+                    if (e.target === backdrop) {
+                        closeTimerModal();
+                    }
+                });
+            }
+        });
+        
+        // Test function for "Start Timer" button
+        function testFloatingTimer() {
+            openTimerModal();
+        }
+        
+        // ============================================
+        // TIMER CONTROLS
+        // ============================================
+        
+        function togglePlayPause() {
+            if (timerRunning) {
+                // Pause
+                timerRunning = false;
+                clearInterval(timerInterval);
+                document.getElementById('playPauseIcon').className = 'fas fa-play';
+                
+                // Stop equalizer if radio was playing
+                stopEqualizer();
+            } else {
+                // Play
+                timerRunning = true;
+                document.getElementById('playPauseIcon').className = 'fas fa-pause';
+                
+                // Show mini tab
+                document.getElementById('timerMiniTab').style.display = 'flex';
+                document.getElementById('miniTabPulse').style.display = 'block';
+                
+                // Start timer
+                timerInterval = setInterval(updateTimer, 1000);
+                
+                // Start equalizer animation
+                startEqualizer();
+            }
+        }
+        
+        function resetTimer() {
+            timerRunning = false;
+            clearInterval(timerInterval);
+            elapsedSeconds = 0;
+            timerSeconds = totalSeconds;
+            
+            document.getElementById('playPauseIcon').className = 'fas fa-play';
+            document.getElementById('miniTabPulse').style.display = 'none';
+            
+            updateAllDisplays();
+            resetDots();
+            stopEqualizer();
+        }
+        
+        function setPresetTime(minutes) {
+            if (timerRunning) return; // Don't change while running
+            
+            currentPreset = minutes;
+            totalSeconds = minutes * 60;
+            timerSeconds = totalSeconds;
+            elapsedSeconds = 0;
+            
+            // Update preset button styles
+            [15, 25, 45, 60].forEach(m => {
+                const btn = document.getElementById(`preset-${m}`);
+                if (btn) {
+                    if (m === minutes) {
+                        btn.style.background = '#F49F1C';
+                        btn.style.color = 'white';
+                        btn.classList.add('active');
+                    } else {
+                        btn.style.background = '#E5E7EB';
+                        btn.style.color = '#030E4F';
+                        btn.classList.remove('active');
+                    }
+                }
+            });
+            
+            updateAllDisplays();
+            resetDots();
+        }
+        
+        function adjustTime(minutes) {
+            if (timerRunning) return;
+            
+            const newMinutes = Math.max(5, Math.min(60, Math.floor(timerSeconds / 60) + minutes));
+            totalSeconds = newMinutes * 60;
+            timerSeconds = totalSeconds;
+            currentPreset = newMinutes;
+            
+            // Clear preset highlights if custom time
+            if (![15, 25, 45, 60].includes(newMinutes)) {
+                [15, 25, 45, 60].forEach(m => {
+                    const btn = document.getElementById(`preset-${m}`);
+                    if (btn) {
+                        btn.style.background = '#E5E7EB';
+                        btn.style.color = '#030E4F';
+                        btn.classList.remove('active');
+                    }
+                });
+            }
+            
+            updateAllDisplays();
+            resetDots();
+        }
+        
+        function updateTimer() {
+            if (!timerRunning) return;
+            
+            elapsedSeconds++;
+            timerSeconds = totalSeconds - elapsedSeconds;
+            
+            if (timerSeconds <= 0) {
+                // Timer complete!
+                timerSeconds = 0;
+                timerRunning = false;
+                clearInterval(timerInterval);
+                document.getElementById('playPauseIcon').className = 'fas fa-play';
+                document.getElementById('miniTabPulse').style.display = 'none';
+                stopEqualizer();
+                
+                // Show completion message
+                alert('🎉 Great work! You completed your focus session!');
+                
+                // Reset
+                resetTimer();
+            }
+            
+            updateAllDisplays();
+            updateDots();
+        }
+        
+        function updateAllDisplays() {
+            const minutes = Math.floor(timerSeconds / 60);
+            const seconds = timerSeconds % 60;
+            const elapsedMins = Math.floor(elapsedSeconds / 60);
+            const elapsedSecs = elapsedSeconds % 60;
+            
+            // Modal display
+            document.getElementById('modalMinutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('modalSeconds').textContent = String(seconds).padStart(2, '0');
+            document.getElementById('elapsedTime').textContent = `${elapsedMins}m ${elapsedSecs}s`;
+            
+            // Mini tab display
+            document.getElementById('miniTabMinutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('miniTabSeconds').textContent = String(seconds).padStart(2, '0');
+            
+            // Progress bar
+            const progress = totalSeconds > 0 ? (elapsedSeconds / totalSeconds) * 100 : 0;
+            document.getElementById('progressBarFill').style.width = progress + '%';
+            
+            // Glow effect
+            const glowSize = 80 + (progress * 0.8); // Grows from 80px to 160px
+            const glow = document.getElementById('timerGlow');
+            if (glow) {
+                glow.style.width = glowSize + 'px';
+                glow.style.height = glowSize + 'px';
+            }
+        }
+        
+        // ============================================
+        // CIRCULAR DOT TIMER
+        // ============================================
+        
+        function generateTimerDots() {
+            const dotsContainer = document.getElementById('timerDots');
+            if (!dotsContainer) return;
+            
+            const totalDots = 60;
+            const radius = 98;
+            const centerX = 104;
+            const centerY = 104;
+            
+            for (let i = 0; i < totalDots; i++) {
+                const angle = (i / totalDots) * 2 * Math.PI;
+                const x = centerX + radius * Math.cos(angle);
+                const y = centerY + radius * Math.sin(angle);
+                
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', x);
+                circle.setAttribute('cy', y);
+                circle.setAttribute('r', 3);
+                circle.setAttribute('fill', '#E5E7EB');
+                circle.setAttribute('class', 'timer-dot');
+                circle.setAttribute('id', `dot-${i}`);
+                
+                dotsContainer.appendChild(circle);
+            }
+        }
+        
+        function updateDots() {
+            const totalDots = 60;
+            const progress = totalSeconds > 0 ? elapsedSeconds / totalSeconds : 0;
+            const filledDots = Math.floor(progress * totalDots);
+            
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                if (dot) {
+                    if (i < filledDots) {
+                        dot.setAttribute('fill', '#F49F1C');
+                        if (!dot.classList.contains('filled')) {
+                            dot.classList.add('filled');
+                        }
+                    } else {
+                        dot.setAttribute('fill', '#E5E7EB');
+                        dot.classList.remove('filled');
+                    }
+                }
+            }
+        }
+        
+        function resetDots() {
+            const totalDots = 60;
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                if (dot) {
+                    dot.setAttribute('fill', '#E5E7EB');
+                    dot.classList.remove('filled');
+                }
+            }
+        }
+        
+        // ============================================
+        // FOCUS RADIO (FM CHANNELS)
+        // ============================================
+        
+        function selectChannel(index) {
+            currentChannel = index;
+            updateRadioDisplay();
+        }
+        
+        function nextChannel() {
+            currentChannel = (currentChannel + 1) % radioChannels.length;
+            updateRadioDisplay();
+        }
+        
+        function prevChannel() {
+            currentChannel = (currentChannel - 1 + radioChannels.length) % radioChannels.length;
+            updateRadioDisplay();
+        }
+        
+        function updateRadioDisplay() {
+            const channel = radioChannels[currentChannel];
+            
+            // Update channel info
+            document.getElementById('channelName').textContent = channel.name;
+            document.getElementById('radioFrequency').textContent = channel.frequency;
+            
+            // Update dot indicators
+            for (let i = 0; i < radioChannels.length; i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                if (dot) {
+                    if (i === currentChannel) {
+                        dot.style.background = '#F49F1C';
+                        dot.classList.add('active');
+                    } else {
+                        dot.style.background = 'rgba(255, 255, 255, 0.3)';
+                        dot.classList.remove('active');
+                    }
+                }
+            }
+        }
+        
+        function startEqualizer() {
+            if (equalizerInterval) return;
+            
+            const bars = document.querySelectorAll('#radioEqualizer .eq-bar');
+            
+            equalizerInterval = setInterval(() => {
+                bars.forEach(bar => {
+                    const randomHeight = 8 + Math.random() * 32; // 8px to 40px
+                    bar.style.height = randomHeight + 'px';
+                });
+            }, 150);
+        }
+        
+        function stopEqualizer() {
+            if (equalizerInterval) {
+                clearInterval(equalizerInterval);
+                equalizerInterval = null;
+            }
+            
+            // Reset bars to default
+            const bars = document.querySelectorAll('#radioEqualizer .eq-bar');
+            const heights = [8, 12, 20, 16, 24, 16, 12, 8];
+            bars.forEach((bar, i) => {
+                bar.style.height = heights[i] + 'px';
+            });
+        }
+        
+        // Mini tab icon rotation when running
+        setInterval(() => {
+            if (timerRunning) {
+                const icon = document.getElementById('miniTabIcon');
+                if (icon) {
+                    const currentRotation = icon.style.transform || 'rotate(0deg)';
+                    const degrees = parseInt(currentRotation.match(/\d+/)?.[0] || 0);
+                    icon.style.transform = `rotate(${(degrees + 6) % 360}deg)`;
+                    icon.style.transition = 'transform 0.1s linear';
+                }
+            }
+        }, 100);
+
         let timerRunning = false;
         let timerSeconds = 0;
         let timerInterval = null;
